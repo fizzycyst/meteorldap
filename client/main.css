@@ -2,3 +2,14 @@ body {
   padding: 10px;
   font-family: sans-serif;
 }
+.group-names {
+  font-family:tahoma, verdana,helvetica,arial,sans-serif;
+  font-weight:bold;
+  color:navy;
+  font-size:large;
+}
+.member-names {
+  font-weight:normal;
+  font-size:normal;
+  color:gray;
+}

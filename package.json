@@ -9,7 +9,21 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
-    "meteor-node-stubs": "^0.4.1"
+    "@reactabular/helpers": "^8.14.0-alpha.4d956311",
+    "ldapjs": "^1.0.2",
+    "lodash": "^4.17.10",
+    "meteor-node-stubs": "^0.4.1",
+    "react": "^16.4.1",
+    "react-dnd": "^5.0.0",
+    "react-dom": "^16.4.1",
+    "react-edit": "^6.4.1",
+    "reactabular-dnd": "^8.14.0",
+    "reactabular-sticky": "^8.14.0",
+    "reactabular-table": "^8.14.0",
+    "reactabular-virtualized": "^8.14.0",
+    "simple-schema": "^1.1.0",
+    "sortabular": "^1.6.0",
+    "uuid": "^3.3.2"
   },
   "meteor": {
     "mainModule": {
