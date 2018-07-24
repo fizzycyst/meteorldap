@@ -10,9 +10,12 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
     "@reactabular/helpers": "^8.14.0-alpha.4d956311",
+    "blob": "0.0.4",
+    "filesaver": "0.0.13",
     "ldapjs": "^1.0.2",
     "lodash": "^4.17.10",
     "meteor-node-stubs": "^0.4.1",
+    "papaparse": "^4.5.0",
     "react": "^16.4.1",
     "react-dnd": "^5.0.0",
     "react-dom": "^16.4.1",

@@ -4,8 +4,9 @@ import Group from '../client/groups.jsx';
 import { Groups } from './groups.js';
 import { Meteor } from 'meteor/meteor';
 import { Users } from '../imports/users.js';
-
-
+import { Papa } from 'papaparse';
+import { createUsersFile } from '../imports/create.js';
+ 
 class App extends Component {
 
     constructor(props) {
@@ -40,7 +41,7 @@ class App extends Component {
                 }
             });
 
-        }, 5000);
+        }, 60000);
         
         
 
@@ -75,6 +76,16 @@ class App extends Component {
         });
     }
    
+    createUsers() {
+        Meteor.call("users.createUsers", {
+            dummy: "dummy"
+        },(err,res) =>{
+            if(err) {
+                console.error(err);
+            }
+        });
+    }
+
     renderTasks() {
          this.props.groups.map((user)=> {
         
@@ -95,6 +106,7 @@ class App extends Component {
             </ul>
             <button type="button" onClick={this.resetData}>Refresh Data</button>
             <button type="button" onClick={this.findPeople}>Find People</button>
+            <button type="button" onClick={this.createUsers}>Create Users</button>
 
             </div>
             
