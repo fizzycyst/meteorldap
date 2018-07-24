@@ -10,7 +10,7 @@ class Group extends Component {
     //const raw = Users.find({}).fetch();
     //console.log(raw);
     return (
-      <li className="group-names">{this.props.group.description}- members:
+      <li className="group-names">{this.props.group.description} - members:
       <ul>
         {this.props.group.memberUid.map((member,index) =>{
           const fullName = Users.find({"dn": {$regex: "." + member + ".*"}}).fetch();

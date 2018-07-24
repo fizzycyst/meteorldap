@@ -29,11 +29,7 @@ class App extends Component {
             }, (err, res) => {
                 if (err) {
                     console.log(err);
-                } else {
-                    this.setState({
-                        updateRecord: true
-                    });
-                }
+                } 
             });
 
             Meteor.call("users.checkuser", {
@@ -41,13 +37,9 @@ class App extends Component {
             }, (err, res) => {
                 if (err) {
                     console.log(err);
-                } else {
-                    this.setState({
-                        updateRecord: true
-                    });
                 }
             });
-            
+
         }, 5000);
         
         
