@@ -7,6 +7,7 @@ import { Mongo } from 'meteor/mongo';
 import { Groups } from '../imports/groups.js';
 
 import { Users }  from '../imports/users.js';
+import { Random } from 'meteor/random'
 
 
 
@@ -34,7 +35,7 @@ client.bind('cn=admin,dc=example,dc=org','admin',function(err){
 });
 
 const data = findLdap(client,username);
-console.log(data);
+
 return data;
 }
 });
@@ -67,10 +68,23 @@ return data;
           let returnValue =[{}];
           let completeFlag = false;
        res.on('searchEntry',Meteor.bindEnvironment(function(entry) {
-        console.log(entry);
+        
           returnValue.push(JSON.stringify(entry.object));
-
-           Groups.insert(entry.object);
+        //Groups.insert(entry.object);
+          
+          Groups.upsert({"dn":entry.object.dn},{
+            $set: {
+             dn: entry.object.dn,
+             cn: entry.object.cn,
+             controls: entry.object.controls,
+             description: entry.object.description,
+             memberUid: entry.object.memberUid
+            },
+            $setOnInsert:{
+              _id: Random.id()
+            }
+          });
+          
   
           //Groups.insert({text: JSON.stringify(entry.object)})
           
@@ -111,11 +125,22 @@ function findLdap (client,searchitem) {
         let returnValue =[{}];
         let completeFlag = false;
      res.on('searchEntry',Meteor.bindEnvironment(function(entry) {
-        console.log(entry.object)
+        
         returnValue.push(JSON.stringify(entry.object));
-        console.log(entry.object);
+        
         try{
-         Users.insert(entry.object);
+         //Users.update(entry.object,upsert=true);
+         Users.upsert({"dn":entry.object.dn},{
+           $set: {
+            dn: entry.object.dn,
+            cn: entry.object.cn,
+            controls: entry.object.controls,
+            gecos: entry.object.gecos,sn: entry.object.sn
+           },
+           $setOnInsert:{
+             _id: Random.id()
+           }
+         });
         } catch(err) {
           console.log(err.message);
         }

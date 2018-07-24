@@ -22,7 +22,38 @@ class App extends Component {
 
     componentDidMount() {
         //this.renderTasks();
-    }
+        setInterval(function(){ 
+            //code goes here that will be run every 5 seconds.    
+            Meteor.call("users.getldap", {
+                dummy:  '12234'
+            }, (err, res) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    this.setState({
+                        updateRecord: true
+                    });
+                }
+            });
+
+            Meteor.call("users.checkuser", {
+                username:  'melanieclifford'
+            }, (err, res) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    this.setState({
+                        updateRecord: true
+                    });
+                }
+            });
+            
+        }, 5000);
+        
+        
+
+        
+}
     resetData() {
         console.log('This has been called');
         Meteor.call("users.getldap", {
