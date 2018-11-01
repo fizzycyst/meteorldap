@@ -6,6 +6,8 @@ import { Meteor } from 'meteor/meteor';
 import { Users } from '../imports/users.js';
 import { Papa } from 'papaparse';
 import { createUsersFile } from '../imports/create.js';
+import $ from 'jquery';
+import Foundation from 'foundation-sites';
  
 class App extends Component {
 
@@ -17,11 +19,13 @@ class App extends Component {
 
         
         }
+        this.resetData  = this.resetData.bind(this);
         this.findPeople = this.findPeople.bind(this);
         this.renderTasks = this.renderTasks.bind(this);
     }
 
     componentDidMount() {
+        $(document).foundation()
         //this.renderTasks();
         setInterval(function(){ 
             //code goes here that will be run every 5 seconds.    
@@ -104,10 +108,12 @@ class App extends Component {
             return (<Group key={group._id} group={group} />)
         })}
             </ul>
-            <button type="button" onClick={this.resetData}>Refresh Data</button>
-            <button type="button" onClick={this.findPeople}>Find People</button>
-            <button type="button" onClick={this.createUsers}>Create Users</button>
-
+            <div className="button-group">
+            <button className="button" type="button" onClick={this.resetData}>Refresh Data</button>
+            <button className="button" type="button" onClick={this.findPeople}>Find People</button>
+            <button className="button" type="button" onClick={this.findPeople}>Find People</button>
+            <button className="button" type="button" onClick={this.createUsers}>Create Users</button>
+            </div>
             </div>
             
         )
